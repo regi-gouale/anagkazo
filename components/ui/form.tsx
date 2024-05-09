@@ -7,13 +7,44 @@ import {
   FieldPath,
   FieldValues,
   FormProvider,
+  SubmitHandler,
+  UseFormReturn,
   useFormContext,
 } from "react-hook-form"
 
 import { cn } from "@/lib/utils"
 import { Label } from "@/components/ui/label"
 
-const Form = FormProvider
+type FormProps<T extends FieldValues> = Omit<
+  React.ComponentProps<"form">,
+  "onSubmit"
+> & {
+  form: UseFormReturn<T>;
+  onSubmit: SubmitHandler<T>;
+};
+
+const Form = <T extends FieldValues>({
+  form,
+  onSubmit,
+  children,
+  className,
+  ...props
+}: FormProps<T>) => {
+  return (
+    <FormProvider {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className={className}
+        {...props}
+      >
+        <fieldset disabled={form.formState.isSubmitting} className={className}>
+          {children}
+        </fieldset>
+      </form>
+    </FormProvider>
+  );
+};
+
 
 type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,

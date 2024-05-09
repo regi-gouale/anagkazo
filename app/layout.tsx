@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
-import { ThemeProvider } from "@/src/theme/theme-provider";
+import { ThemeProvider } from "@/src/themes/theme-provider";
 import { Header } from "@/src/features/layout/header";
 import Footer from "@/src/features/layout/footer";
 
