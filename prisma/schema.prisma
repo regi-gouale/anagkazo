@@ -47,17 +47,49 @@ model VerificationRequest {
   @@unique([identifier, token])
 }
 
-
 // App 
 model User {
-  id        String   @id @default(cuid())
-  name      String?
-  email     String   @unique
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
   emailVerified DateTime?
-  image     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  image         String?
+  admin         Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
   accounts Account[]
   sessions Session[]
+}
+
+model Missionnaire {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  city         String?
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  results Result[]
+}
+
+model Result {
+  id String @id @default(cuid())
+  missionnaireId String
+  soulTransformationAverage Float
+  compassionAverage Float
+  coordinationAverage Float
+  scoutingAverage Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  missionnaire Missionnaire @relation(fields: [missionnaireId], references: [id])
+}
+
+model Question {
+  id          String @id @default(cuid())
+  type        String
+  description String
 }

@@ -29,7 +29,6 @@ export const authOptions: AuthOptions = {
     session({ session, user }) {
       if (!session?.user) return session;
       session.user.id = user.id;
-      console.log("session", session);
       return session;
     },
   },

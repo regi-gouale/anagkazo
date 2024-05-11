@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -20,10 +22,9 @@ export default function QuizInfoPage() {
             Informations sur le Missionnaire
           </CardTitle>
           <CardDescription className="text-justify">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum odit
-            laboriosam dicta rem exercitationem nam officiis perspiciatis magni
-            labore. Nam sunt quis praesentium repellat voluptates nisi dolorum
-            at ea autem!
+            Veuillez répondre aux questions suivantes en vous basant sur votre
+            expérience personnelle. <br /> <br /> <b>Attention:</b> Vous aurez
+            20 secondes pour répondre à chaque question.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -55,7 +56,7 @@ export default function QuizInfoPage() {
             <Button variant="outline" className="mx-8">
               Annuler
             </Button>
-            <Button variant="default" className="mx-8">
+            <Button variant="default" className="mx-8" onClick={() => {}}>
               Continuer
             </Button>
           </div>
