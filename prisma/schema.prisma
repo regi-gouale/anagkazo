@@ -62,30 +62,30 @@ model User {
   sessions Session[]
 }
 
-model Missionnaire {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String    @unique
-  city         String?
+model Missionary {
+  id    String  @id @default(cuid())
+  name  String?
+  email String?
+  city  String?
 
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   results Result[]
 }
 
 model Result {
-  id String @id @default(cuid())
-  missionnaireId String
+  id                        String @id @default(cuid())
+  missionaryId              String @map("missionaryId")
   soulTransformationAverage Float
-  compassionAverage Float
-  coordinationAverage Float
-  scoutingAverage Float
+  compassionAverage         Float
+  coordinationAverage       Float
+  scoutingAverage           Float
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  missionnaire Missionnaire @relation(fields: [missionnaireId], references: [id])
+  missionary Missionary @relation(fields: [missionaryId], references: [id])
 }
 
 model Question {
